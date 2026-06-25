@@ -17,6 +17,39 @@ const bottomTabs = [
   { id: "profile", label: "Profile" },
 ];
 
+function DateTimeField({ label, value, onChange }) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-bold text-slate-300">{label}</span>
+      <div className="relative">
+        <input
+          type="datetime-local"
+          value={value}
+          onChange={onChange}
+          className="w-full appearance-none rounded-2xl border border-blue-400/15 bg-[#091326] px-4 py-4 pr-12 text-slate-100 outline-none focus:border-blue-400 [color-scheme:dark] [&::-webkit-calendar-picker-indicator]:opacity-0"
+        />
+        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <rect x="3" y="4" width="18" height="18" rx="2" />
+            <path d="M16 2v4" />
+            <path d="M8 2v4" />
+            <path d="M3 10h18" />
+          </svg>
+        </span>
+      </div>
+    </label>
+  );
+}
+
 export default function Home() {
   const [username, setUsername] = useState("");
   const [loginName, setLoginName] = useState("");
@@ -368,18 +401,16 @@ export default function Home() {
                   className="rounded-2xl border border-blue-400/15 bg-[#091326] px-4 py-4 text-white outline-none placeholder:text-slate-500 focus:border-blue-400 lg:col-span-2"
                 />
 
-                <input
-                  type="datetime-local"
+                <DateTimeField
+                  label="Start date and time"
                   value={scheduledStart}
                   onChange={(event) => setScheduledStart(event.target.value)}
-                  className="rounded-2xl border border-blue-400/15 bg-[#091326] px-4 py-4 text-white outline-none focus:border-blue-400 [color-scheme:dark]"
                 />
 
-                <input
-                  type="datetime-local"
+                <DateTimeField
+                  label="End date and time optional"
                   value={scheduledEnd}
                   onChange={(event) => setScheduledEnd(event.target.value)}
-                  className="rounded-2xl border border-blue-400/15 bg-[#091326] px-4 py-4 text-white outline-none focus:border-blue-400 [color-scheme:dark]"
                 />
 
                 <select
